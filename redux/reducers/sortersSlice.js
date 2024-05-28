@@ -9,13 +9,15 @@ const initialState = {
     status: "UNSORTED",
     barWidth: 15,
     maxBarWidth: 30,
-    speed: 50,
+    speed: 1000,
     maxSpeed: 500,
     compEle1: -1,
     compEle2: -1,
     swapEle1: -1,
     swapEle2: -1,
     spclEle: -1,
+    mergeArr1: [-1, -1],
+  mergeArr2: [-1, -1],
   };
 
 export const sortingSlice = createSlice({
@@ -74,7 +76,17 @@ export const sortingSlice = createSlice({
         },
         setSpecialElement: (state, action) => {
         state.spclEle = action.payload;
-        }
+        },
+        setMergeArr1: (state, action) => {
+        state.mergeArr1 = action.payload;
+        },
+        setMergeArr2: (state, action) => {
+        state.mergeArr2 = action.payload;
+        },
+        resetMergeArrays: (state) => {
+        state.mergeArr1 = [];
+        state.mergeArr2 = [];
+        },
     },
 });
 
@@ -91,6 +103,9 @@ resetStats,
 setCompElements,
 setSwapElements,
 setSpecialElement,
+setMergeArr1,
+setMergeArr2,
+resetMergeArrays,
 
 } = sortingSlice.actions;
 
