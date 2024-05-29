@@ -18,15 +18,15 @@ export async function SelectionSort() {
     let minIndex = i;
     store.dispatch(setSpecialElement(minIndex));
     for (let j = i + 1; j < array.length; j++) {
-      await MakeDelay(store.getState().sorting.speed);
+      if (!store.getState().sorting.running) return;
       store.dispatch(setCompElements([minIndex, j]));
+      await MakeDelay(store.getState().sorting.speed);
       if (array[j] < array[minIndex]) {
         minIndex = j;
-        store.dispatch(setSpecialElement(minIndex));
       }
-      store.dispatch(setCompElements([minIndex, j]));
       store.dispatch(incrementComparisons());
       store.dispatch(setSwapElements([-1, -1]));
+      store.dispatch(setCompElements([minIndex, j]));
     }
     array = store.getState().sorting.array.slice();
     store.dispatch(setSwapElements([i, minIndex]));

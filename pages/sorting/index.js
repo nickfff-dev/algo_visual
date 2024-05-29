@@ -8,30 +8,23 @@ import { store } from '@/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRunning, resetStats, setBarWidth } from '@/redux/reducers/sortersSlice';
 
-const mono = Ubuntu_Mono({subsets: ['latin'], weight: ['400', '700']})
 
 
-
-export default function Home() {
-  const dispatch = useDispatch();
-  
+export default function SortingContainer (){
+    const dispatch = useDispatch();
   const maxBarWidth = useSelector((state) => state.sorting.maxBarWidth);
-  const updateBarWidth = (width) => {
-    dispatch(setBarWidth(maxBarWidth - width));
-    generateArray();
-    
-  };
+  
+
   useEffect(() => {
    dispatch(setRunning(true));
-   generateArray(100);
+    generateArray(200);
     SelectionSort();
-  }, [ ]);
+  }, []);
 
 
 
   return (   
-    <div
-      className={`${mono.className} mx-auto`}
+    <div className=""
     >
       < Visualiser />
     </div>

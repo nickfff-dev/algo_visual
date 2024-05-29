@@ -9,7 +9,7 @@ export default function Bar(props){
           width: `${props.width}px`,
           height: `${props.height}px`,
           backgroundColor: `${
-             props.bgColor
+            props.bgColor == undefined ? Colors.DEFAULT_BG_COLOR : props.bgColor
           }`,
           borderColor: `${
             props.borderColor == undefined
@@ -20,14 +20,7 @@ export default function Bar(props){
         id={props.id}
         className={`border-t-2 rounded transition-all ease-linear `}
       ></div>
-      <span
-      style={{
-        color: `${
-          props.bgColor
-        }`,
-      
-      }}
-      className=" font-bold">{props.height}</span>
+
       </div>
     )
 };

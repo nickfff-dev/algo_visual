@@ -1,11 +1,12 @@
 import { store } from "@/redux/store";
-import { setArray, setStatus } from "@/redux/reducers/sortersSlice";
+import { setArray, setStatus, setBarWidth } from "@/redux/reducers/sortersSlice";
 
 
 export const generateArray = (arraySize) => {
-    if (arraySize > 46){
-        arraySize = 46;
-    }
+    const visualizerContainer = document.getElementById("visualizer-container");
+    let width = visualizerContainer.clientWidth;
+    const maxBarWidth = Math.floor(width / arraySize);
+    store.dispatch(setBarWidth(maxBarWidth));
     let min = 1;
     let max = 500;
     let array = [];
