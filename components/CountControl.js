@@ -1,13 +1,11 @@
 import { useDispatch } from "react-redux"
 import { useCallback } from "react"
-import { useSelector } from "react-redux";
 import { setArrayCount, setRunning } from "@/redux/reducers/sortersSlice";
 import { generateArray } from "./generateArray";
 
 const  CountControl = () => {
     const dispatch = useDispatch();
     const updateCount = useCallback((e) => {
-        setRunning(false);
         dispatch(setArrayCount(parseInt(e.target.value)));
         generateArray(parseInt(e.target.value));
     }, [dispatch]);
