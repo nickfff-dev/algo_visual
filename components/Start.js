@@ -4,12 +4,17 @@ import { useCallback } from "react"
 import { useSelector } from "react-redux"
 import { setStatus, resetStats, setRunning } from "@/redux/reducers/sortersSlice"
 import SortingAlgorithms from "./SortingAlgorithms"
-
+import { generateArray } from "./generateArray"
 export default function StartControl() {
   const dispatch = useDispatch();
   const algorithmId = useSelector((state) => state.page.algorithmId);
   const isRunning = useSelector((state) => state.sorting.running);
-
+  const algStatus = useSelector((state) => state.sorting.status);
+  React.useEffect(() => {
+    if (algStatus === "sorted") { 
+      generateArray();
+    };
+  }, [ algStatus]);
   const startAlgorithm = useCallback( async () => {
     dispatch(resetStats());
     dispatch(setRunning(true));

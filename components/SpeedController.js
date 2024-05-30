@@ -4,10 +4,12 @@ import { useCallback } from "react";
 
 
 const  SpeedControl =() => {
-
     const dispatch = useDispatch();
+    const maxSpeed = useSelector((state) => state.sorting.maxSpeed);
+    const speed = useSelector((state) => state.sorting.speed);
     const updateSpeed = useCallback((e) => {
-        dispatch(setSpeed(parseInt(e.target.value)));
+        const newSpeed = parseInt(e.target.value);
+        dispatch(setSpeed(maxSpeed - newSpeed));
     }
     , [dispatch]);
     return (
@@ -49,7 +51,7 @@ type="range" className="w-full bg-transparent cursor-pointer appearance-none dis
   [&::-moz-range-track]:h-2
   [&::-moz-range-track]:bg-gray-100
   [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage2"
-    min="1" max="1000" step="200"
+    min={0} max={maxSpeed} defaultValue={maxSpeed - speed}
   />
 
   </div>
