@@ -14,19 +14,18 @@ const mono = Ubuntu_Mono({subsets: ['latin'], weight: ['400', '700']})
 export default function Home() {
   const dispatch = useDispatch();
   const algorithmId = useSelector((state) => state.page.algorithmId);
-  const arrayCount = useSelector((state) => state.sorting.arrayCount);
+
   useEffect(() => {
     dispatch(setRunning(false));
     dispatch(resetStats());
     if (algorithmId){
       console.log(algorithmId);
-        generateArray(arrayCount);
+        generateArray();
     }
   });
   return (   
     <div
-      className={`${mono.className} mx-auto`}
-    >
+      className={`${mono.className} mx-auto`}>
       < Visualiser />
     </div>
   );

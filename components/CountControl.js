@@ -7,7 +7,7 @@ const  CountControl = () => {
     const dispatch = useDispatch();
     const updateCount = useCallback((e) => {
         dispatch(setArrayCount(parseInt(e.target.value)));
-        generateArray(parseInt(e.target.value));
+        generateArray();
     }, [dispatch]);
     return (
         <div className="lg:w-full w-[10rem] border px-3 lg:py-3 py-1.5">
