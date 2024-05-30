@@ -27,7 +27,7 @@ const Visualiser = () => {
 
 
     return (
-        <div  id='visualizer-container' className="flex flex-row justify-center items-end  h-96 gap-x-1">
+        <div  id='visualizer-container' className="flex flex-row justify-center items-end  h-96 gap-x-1 w-[22vw]">
             {data.map((value, index) => {
  if (pivot == index) {
     borderColor = colorRange.RED_BORDER_COLOR;

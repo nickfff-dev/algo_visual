@@ -6,6 +6,7 @@ export const generateArray = (arraySize) => {
     const visualizerContainer = document.getElementById("visualizer-container");
     let width = visualizerContainer.clientWidth;
     const maxBarWidth = Math.floor(width / arraySize);
+    // console.log(maxBarWidth, width, arraySize);
     store.dispatch(setBarWidth(maxBarWidth));
     let min = 1;
     let max = 500;

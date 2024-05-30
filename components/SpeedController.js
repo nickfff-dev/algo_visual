@@ -1,10 +1,21 @@
+import { setSpeed } from "@/redux/reducers/sortersSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useCallback } from "react";
 
 
-const  SpeedControl =() =>{
+const  SpeedControl =() => {
+
+    const dispatch = useDispatch();
+    const updateSpeed = useCallback((e) => {
+        dispatch(setSpeed(parseInt(e.target.value)));
+    }
+    , [dispatch]);
     return (
         <div className="lg:w-full border px-3 lg:py-3 py-1.5 w-[10rem]">
 
-<input type="range" className="w-full bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-none
+<input 
+onChange={updateSpeed}
+type="range" className="w-full bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-none
   [&::-webkit-slider-thumb]:w-2.5
   [&::-webkit-slider-thumb]:h-2.5
   [&::-webkit-slider-thumb]:-mt-0.5
@@ -37,7 +48,10 @@ const  SpeedControl =() =>{
   [&::-moz-range-track]:w-full
   [&::-moz-range-track]:h-2
   [&::-moz-range-track]:bg-gray-100
-  [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage2"/>
+  [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage2"
+    min="1" max="1000" step="200"
+  />
+
   </div>
     );
     

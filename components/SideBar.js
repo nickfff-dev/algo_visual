@@ -2,6 +2,7 @@ import AlgoSelector from "./AlgoSelector"
 import SpeedControl from "./SpeedController"
 import CountControl from "./CountControl";
 import DataControl from "./DataControl";
+import StartControl from "./Start";
 const SideBar =() =>{
     return (
 <div
@@ -13,12 +14,14 @@ const SideBar =() =>{
 <div className=""><DataControl /> </div>
 <div><AlgoSelector /></div>
 </div>
-    <div className="relative flex lg:flex-row flex-col lg:gap-1">
+    <div className="relative flex lg:flex-row flex-col gap3 justify-between items-end lg:gap-1">
     <div className="relative">
         <span className="text-xs font-medium">count</span><CountControl />
     </div>
     <div className="relative">
       <span className="text-xs font-medium">speed</span>  <SpeedControl />
+    </div>
+    <div className="relative">  <StartControl />
     </div>
     </div>
   

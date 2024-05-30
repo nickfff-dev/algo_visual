@@ -28,6 +28,9 @@ export const sortingSlice = createSlice({
         state.array = action.payload;
         state.arrayCount = action.payload.length;
         },
+        setArrayCount: (state, action) => {
+        state.arrayCount = action.payload;
+        },
         incrementComparisons: (state) => {
         state.comparisons++;
         },
@@ -96,6 +99,7 @@ setArray,
 incrementComparisons,
 incrementSwaps,
 setRunning,
+setArrayCount,
 setStatus,
 setBarWidth,
 setSpeed,

@@ -1,11 +1,23 @@
+import { useDispatch } from "react-redux"
+import { useCallback } from "react"
+import { useSelector } from "react-redux";
+import { setArrayCount, setRunning } from "@/redux/reducers/sortersSlice";
+import { generateArray } from "./generateArray";
 
-
-const  CountControl = () =>{
+const  CountControl = () => {
+    const dispatch = useDispatch();
+    const updateCount = useCallback((e) => {
+        setRunning(false);
+        dispatch(setArrayCount(parseInt(e.target.value)));
+        generateArray(parseInt(e.target.value));
+    }, [dispatch]);
     return (
         <div className="lg:w-full w-[10rem] border px-3 lg:py-3 py-1.5">
             
 <label htmlFor="basic-range-slider-usage" className="sr-only">Count Control</label>
-<input type="range"  className=" bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-none
+<input 
+onChange={updateCount}
+type="range"  className="bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-none
   [&::-webkit-slider-thumb]:w-2.5
   [&::-webkit-slider-thumb]:h-2.5
   [&::-webkit-slider-thumb]:-mt-0.5
@@ -38,9 +50,10 @@ const  CountControl = () =>{
   [&::-moz-range-track]:w-full
   [&::-moz-range-track]:h-2
   [&::-moz-range-track]:bg-gray-100
-  [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage"/>
+  [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage"
+ min="10" max="200" step="20"
+  />
   </div>
     );
-    
 };
 export default CountControl;

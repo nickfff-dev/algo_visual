@@ -13,19 +13,9 @@ const mono = Ubuntu_Mono({subsets: ['latin'], weight: ['400', '700']})
 
 
 export default function Home() {
-  const dispatch = useDispatch();
-  
-  const maxBarWidth = useSelector((state) => state.sorting.maxBarWidth);
-  const updateBarWidth = (width) => {
-    dispatch(setBarWidth(maxBarWidth - width));
-    generateArray();
-    
-  };
   useEffect(() => {
-   dispatch(setRunning(true));
-   generateArray(100);
     SelectionSort();
-  }, [ ]);
+  });
 
 
 
