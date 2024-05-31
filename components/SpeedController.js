@@ -11,7 +11,7 @@ const  SpeedControl =() => {
         const newSpeed = parseInt(e.target.value);
         dispatch(setSpeed(maxSpeed - newSpeed));
     }
-    , [dispatch]);
+    , [dispatch, maxSpeed]);
     return (
         <div className="lg:w-full border px-3 lg:py-3 py-1.5 w-[10rem]">
 

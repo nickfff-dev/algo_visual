@@ -30,9 +30,12 @@ export default function StartControl() {
     if (algorithmId === "mergeSort") {
       await SortingAlgorithms.mergeSort();
     };
+    if (algorithmId === "insertionSort") {
+      await SortingAlgorithms.insertionSort();
+    };
     dispatch(setRunning(false));
     dispatch(setStatus("sorted"));
-  }, [dispatch]);
+  }, [dispatch, algorithmId]);
 
   // const handleStart = useCallback(() => {
   //   if (isRunning) return;

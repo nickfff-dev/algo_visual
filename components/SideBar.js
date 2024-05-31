@@ -11,7 +11,6 @@ const SideBar =() =>{
   <nav className="flex  gap-x-3 font-sans lg:items-end  items-center text-base font-normal text-blue-gray-700">
     
   <div className="relative flex lg:flex-row flex-col gap-3 justify-between">
-<div className=""><DataControl /> </div>
 <div><AlgoSelector /></div>
 </div>
     <div className="relative flex lg:flex-row flex-col gap3 justify-between items-end lg:gap-1">

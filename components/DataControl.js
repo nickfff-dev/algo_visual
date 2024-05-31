@@ -8,9 +8,9 @@ export default function DataControl(){
   const dispatch = useDispatch();
   const arrayCount = useSelector((state) => state.sorting.arrayCount);
 
-  const handleGenerateArray = useCallback(() => {
+  const handleGenerateArray = () => {
     generateArray();
-  }, [dispatch, arrayCount])
+  };
     return(
 <button
 onClick={handleGenerateArray}
