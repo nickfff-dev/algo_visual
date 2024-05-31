@@ -4,6 +4,7 @@ const initialState = {
     algorithmName: "SelectionSort",
     algorithmId: "selectionSort",
     algorithmCategory: "Sorting",
+    mobileMenuOpen: false,
 };
 
 export const pageSlice = createSlice({
@@ -19,9 +20,12 @@ export const pageSlice = createSlice({
         setAlgorithmCategory: (state, action) => {
             state.algorithmCategory = action.payload;
         },
+        setMobileMenuOpen: (state, action) => {
+            state.mobileMenuOpen = action.payload;
+        },
     }
 });
 
-export const { setAlgorithmName, setAlgorithmId, setAlgorithmCategory } = pageSlice.actions;
+export const { setAlgorithmName, setAlgorithmId, setAlgorithmCategory, setMobileMenuOpen } = pageSlice.actions;
 
 export default pageSlice.reducer;
