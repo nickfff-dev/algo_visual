@@ -31,7 +31,7 @@ const SideBar = () => {
     </div>
     <button
      onClick={toggleMobileMenu}
-      class="relative ml-auto h-3 max-h-[40px] w-6 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-200 dark:text-gray-900 transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
+      className="relative ml-auto h-3 max-h-[40px] w-6 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-200 dark:text-gray-900 transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
       type="button">
       <span className="absolute transform -translate-x-1/2 -translate-y-3/4 top-1/4 left-1/2">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"
