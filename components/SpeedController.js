@@ -11,7 +11,7 @@ const  SpeedControl =() => {
         const newSpeed = parseInt(e.target.value);
         dispatch(setSpeed(maxSpeed - newSpeed));
     }
-    , [dispatch, maxSpeed]);
+    , [dispatch, maxSpeed, speed]);
     return (
         <div className="lg:w-full border px-3 lg:py-3 py-1.5 w-[10rem]">
 
@@ -51,7 +51,7 @@ type="range" className="w-full bg-transparent cursor-pointer appearance-none dis
   [&::-moz-range-track]:h-2
   [&::-moz-range-track]:bg-gray-100
   [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage2"
-    min={0} max={maxSpeed} defaultValue={maxSpeed - speed}
+    min={'0'} max={`${maxSpeed}`} defaultValue={`${maxSpeed - speed}`}
   />
 
   </div>

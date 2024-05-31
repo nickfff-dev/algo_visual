@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux"
 import { useCallback } from "react"
 import { setAlgorithmId } from "@/redux/reducers/documentSlice"
+import { generateArray } from "./generateArray";
 
 
 export default function AlgoSelector() {
@@ -8,6 +9,7 @@ export default function AlgoSelector() {
 
   const handleSelectAlgorithm = useCallback((e) => {
     dispatch(setAlgorithmId(e.target.value));
+    generateArray();
   }, [dispatch]);
 
     return(

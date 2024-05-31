@@ -1,11 +1,13 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useCallback } from "react"
 import { setArrayCount, setRunning } from "@/redux/reducers/sortersSlice";
 import { generateArray } from "./generateArray";
 
 const  CountControl = () => {
     const dispatch = useDispatch();
+    const arrayCount = useSelector((state) => state.sorting.arrayCount);
     const updateCount = useCallback((e) => {
+        dispatch(setRunning(false));
         dispatch(setArrayCount(parseInt(e.target.value)));
         generateArray();
     }, [dispatch]);
@@ -49,7 +51,7 @@ type="range"  className="bg-transparent cursor-pointer appearance-none disabled:
   [&::-moz-range-track]:h-2
   [&::-moz-range-track]:bg-gray-100
   [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage"
- min="10" max="200" step="20"
+ min={'10'} max={'200'} step={'10'} defaultValue={`${arrayCount}`} 
   />
   </div>
     );

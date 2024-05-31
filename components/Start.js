@@ -10,11 +10,11 @@ export default function StartControl() {
   const algorithmId = useSelector((state) => state.page.algorithmId);
   const isRunning = useSelector((state) => state.sorting.running);
   const algStatus = useSelector((state) => state.sorting.status);
-  React.useEffect(() => {
-    if (algStatus === "sorted") { 
-      generateArray();
-    };
-  }, [ algStatus]);
+  // React.useEffect(() => {
+  //   if (algStatus === "sorted") { 
+  //     generateArray();
+  //   };
+  // }, [ algStatus]);
   const startAlgorithm = useCallback( async () => {
     dispatch(resetStats());
     dispatch(setRunning(true));

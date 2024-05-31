@@ -6,13 +6,18 @@ export const generateArray = () => {
     const visualizerContainer = document.getElementById("visualizer-container");
     let width = visualizerContainer.clientWidth;
     let items = store.getState().sorting.arrayCount;
-    console.log(items);
-    if (items > 0) {
-        store.dispatch(setArrayCount(10));
+    console.log(typeof items);
+    if (items > 10) {
+        if(items > width){
+            items = width;
+        }
+        const maxBarWidth = Math.floor(width / items);
+        store.dispatch(setBarWidth(maxBarWidth));
+
+    } else {
+        store.dispatch(setBarWidth(20));
     }
-    const maxBarWidth = Math.floor(width / items);
-    // console.log(maxBarWidth, width, arraySize);
-    store.dispatch(setBarWidth(maxBarWidth));
+    
     let min = 1;
     let max = 500;
     let array = [];
