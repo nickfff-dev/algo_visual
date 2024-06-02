@@ -41,11 +41,27 @@ export default function Home() {
       generateTreeData();
     }
   }, [dataStructure, generateTreeData]);
-  return (   
+  return (  <div className='overflow-hidden w-full mt-24 h-screen'>
+             <div className="absolute -bottom-12 lg:-top-0 top-5 left-0 right-1/2 z-10 w-screen  text-white/10 md:bottom-8 ">
+    <svg aria-hidden="true" className="absolute inset-0 h-[80vh] w-screen border">
+      <defs>
+        <pattern id=":S2:" width="12" height="12" patternUnits="userSpaceOnUse" x="100%" y="100%" patternTransform="translate(112 64)">
+          <path d="M0 128V.5H128" fill="none" stroke="currentColor"></path>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#:S2:)"></rect>
+    </svg>
+  </div>
     <div
     id='visualizer-container'
-      className={`${mono.className} ${dataStructure === dataStructures.TREE ? '': 'w-[20%]'} mx-auto`}>
+    
+      className={`${mono.className} ${dataStructure === dataStructures.TREE ? '': 'w-[20%] h-[500px]'} mx-auto flex-2 `}>
+
       {dataStructure === dataStructures.ARRAY ? <RenderArray/> : <BinaryTree/>}
+    </div>
+    <div className="bg-gray-100 z-[1000]  h-[10vh] mt-32  mx-auto">
+      im stats
+    </div>
     </div>
   );
 }

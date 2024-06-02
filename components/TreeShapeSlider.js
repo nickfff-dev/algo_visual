@@ -24,7 +24,7 @@ const TreeShapeInput = () => {
 
 
     return (
-        <form onSubmit={updateTreeShape} id='treeShapeform' className="dark:text-gray-200 flex flex-col items-center justify-center lg:w-full w-[10rem] border px-3 lg:py-3 py-1.5 text-black">
+        <form onSubmit={updateTreeShape} id='treeShapeform' className=" z-[1000] dark:text-gray-200 flex flex-col items-center justify-center lg:w-full w-[10rem] border px-3 lg:py-3 py-1.5 text-black">
 
   <div className="flex justify-end gap-x-2">
   <label htmlFor="treelevels" className="sr-only">Levels</label>

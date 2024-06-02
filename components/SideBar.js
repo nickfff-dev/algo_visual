@@ -22,7 +22,7 @@ const SideBar = () => {
   }, [dispatch, mobileMenuOpen]);
     return (
 <nav
-  className="block fixed z-50 w-full max-w-screen-xl px-6 lg:py-3  mx-auto dark:bg-white bg-white border shadow-md  border-white/80 bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200">
+  className="block fixed z-[50] w-full max-w-screen-xl px-6 lg:py-3  mx-auto dark:bg-white bg-white border shadow-md  border-white/80 bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200">
 
   <div className="flex lg:flex-row flex-col items-center justify-between text-blue-gray-900">
   <Link href="/"

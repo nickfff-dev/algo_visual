@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import TreeModel from 'tree-model';
 import TreeShapeInput from "./TreeShapeSlider";
-
+import { useSelector } from 'react-redux';
 
 export default function BinaryTree() {
     let treeState = useSelector(state => state.trees);
@@ -69,12 +69,12 @@ export default function BinaryTree() {
   };
   
     return (
-      <div className="flex flex-col w-full justify-center items-center max-h-screen">
+      <div className="flex z-[1000]  flex-col w-full justify-center items-center max-h-screen">
         <TreeShapeInput />
         <svg
           viewBox="-450 0 900 400"
-          className="border border-gray-400 "
           width="900"
+          className='z-[1000]'
           height="600"
         >
           {root && renderNode(root)}
