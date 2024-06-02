@@ -1,18 +1,17 @@
 import { setSpeed } from "@/redux/reducers/sortersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
-import { setSpeed as treeSpeed } from "@/redux/reducers/treesReducer";
-import { dataStructures } from "@/utils/constants";
+
+
 
 
 const  SpeedControl =() => {
     const dispatch = useDispatch();
 
     const maxSpeed = useSelector((state) => state.sorting.maxSpeed);
-    const treeMaxSpeed = useSelector((state) => state.trees.maxSpeed);
+   
     const speed = useSelector((state) => state.sorting.speed);
-    const treeSortingSpeed = useSelector((state) => state.trees.speed);
-    const currentDataStructure = useSelector((state) => state.page.dataStructure);
+  
     
     const updateArraySpeed = useCallback((e) => {
         const newSpeed = parseInt(e.target.value);
@@ -20,23 +19,11 @@ const  SpeedControl =() => {
     }
     , [dispatch, maxSpeed]);
 
-    const updateTreeSpeed = useCallback((e) => {
-        const newSpeed = parseInt(e.target.value);
-        dispatch(treeSpeed(treeMaxSpeed - newSpeed));
-    } , [dispatch, treeMaxSpeed]);
-
-    const updateSpeed = useCallback((e) => {
-        if (currentDataStructure === dataStructures.ARRAY) {
-            updateArraySpeed(e);
-        } else {
-            updateTreeSpeed(e);
-        }
-    }, [currentDataStructure, updateArraySpeed, updateTreeSpeed]);
     return (
         <div className="lg:w-full border px-3 lg:py-3 py-1.5 w-[10rem]">
 
 <input 
-onChange={updateSpeed}
+onChange={updateArraySpeed}
 type="range" className="w-full bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-none
   [&::-webkit-slider-thumb]:w-2.5
   [&::-webkit-slider-thumb]:h-2.5
@@ -71,11 +58,7 @@ type="range" className="w-full bg-transparent cursor-pointer appearance-none dis
   [&::-moz-range-track]:h-2
   [&::-moz-range-track]:bg-gray-100
   [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage2"
-    min={'0'} max={`${
-      currentDataStructure === dataStructures.ARRAY ? maxSpeed : treeMaxSpeed
-      }`} defaultValue={`${
-         currentDataStructure === dataStructures.ARRAY ? maxSpeed - speed : treeMaxSpeed - treeSortingSpeed
-      }`}
+    min={'0'} max={`${ maxSpeed }`} defaultValue={`${maxSpeed - speed }`}
   />
 
   </div>

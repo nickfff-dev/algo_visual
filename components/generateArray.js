@@ -6,7 +6,7 @@ export const generateArray = () => {
     const visualizerContainer = document.getElementById("visualizer-container");
     let width = visualizerContainer.clientWidth;
     let items = store.getState().sorting.arrayCount;
-    console.log(typeof items);
+    console.log(typeof items, items, "from generate array");
     if (items > 10) {
         if(items > width){
             items = width;
@@ -30,4 +30,6 @@ export const generateArray = () => {
         .map((a) => a.value);
     store.dispatch(setArray(shuffledArray));
     store.dispatch(setStatus("unsorted"));
+   
+    console.log(typeof items, "from generate array2", items);
 };

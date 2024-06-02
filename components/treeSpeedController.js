@@ -1,23 +1,29 @@
-import { useDispatch, useSelector } from "react-redux"
-import { useCallback } from "react"
-import { setArrayCount, setRunning } from "@/redux/reducers/sortersSlice";
-import { generateArray } from "./generateArray";
+import { useDispatch, useSelector } from "react-redux";
+import { useCallback } from "react";
+import { setSpeed as treeSpeed } from "@/redux/reducers/treesReducer";
 
-const  CountControl = () => {
+
+
+const  TreeSpeedControl =() => {
     const dispatch = useDispatch();
-    const arrayCount = useSelector((state) => state.sorting.arrayCount);
-    const updateCount = useCallback((e) => {
-        dispatch(setRunning(false));
-        dispatch(setArrayCount(e.target.value));
-        generateArray();
-    }, [dispatch]);
+
+    const treeMaxSpeed = useSelector((state) => state.trees.maxSpeed);
+    const treeSortingSpeed = useSelector((state) => state.trees.speed);
+   
+    
+
+
+    const updateTreeSpeed = useCallback((e) => {
+        const newSpeed = parseInt(e.target.value);
+        dispatch(treeSpeed(treeMaxSpeed - newSpeed));
+    } , [dispatch, treeMaxSpeed]);
+
     return (
-        <div className="lg:w-full w-[10rem] border px-3 lg:py-3 py-1.5 text-black">
-             <span className="pr-3">{arrayCount}</span>
-<label htmlFor="basic-range-slider-usage" className="sr-only">Count Control</label>
+        <div className="lg:w-full border px-3 lg:py-3 py-1.5 w-[10rem]">
+
 <input 
-onChange={updateCount}
-type="range"  className="bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-none
+onChange={updateTreeSpeed}
+type="range" className="w-full bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-none
   [&::-webkit-slider-thumb]:w-2.5
   [&::-webkit-slider-thumb]:h-2.5
   [&::-webkit-slider-thumb]:-mt-0.5
@@ -50,10 +56,13 @@ type="range"  className="bg-transparent cursor-pointer appearance-none disabled:
   [&::-moz-range-track]:w-full
   [&::-moz-range-track]:h-2
   [&::-moz-range-track]:bg-gray-100
-  [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage"
- min={10} max={200} defaultValue={arrayCount}
+  [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage2"
+    min={'0'} max={`${treeMaxSpeed}`} defaultValue={`${treeMaxSpeed - treeSortingSpeed
+      }`}
   />
+
   </div>
     );
+    
 };
-export default CountControl;
+export default TreeSpeedControl;

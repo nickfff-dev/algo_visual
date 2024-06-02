@@ -7,15 +7,20 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setMobileMenuOpen } from "@/redux/reducers/documentSlice";
 import Link from "next/link";
+import { dataStructures } from "@/utils/constants";
+import DataStructureSelector from "./DataTypeSelector";
+import TreeSpeedControl from "./treeSpeedController";
 const SideBar = () => {
   const dispatch = useDispatch();
   const mobileMenuOpen = useSelector((state) => state.page.mobileMenuOpen);
+  const dataStructure = useSelector((state) => state.page.dataStructure);
+
   const toggleMobileMenu = useCallback(() => {
     dispatch(setMobileMenuOpen(!mobileMenuOpen));
   }, [dispatch, mobileMenuOpen]);
     return (
 <nav
-  className="block fixed  w-full max-w-screen-xl px-6 lg:py-3  mx-auto dark:bg-white bg-white border shadow-md  border-white/80 bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200">
+  className="block fixed z-50 w-full max-w-screen-xl px-6 lg:py-3  mx-auto dark:bg-white bg-white border shadow-md  border-white/80 bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200">
 
   <div className="flex lg:flex-row flex-col items-center justify-between text-blue-gray-900">
   <Link href="/"
@@ -24,9 +29,13 @@ const SideBar = () => {
     </Link>
     <div className={`${mobileMenuOpen ? '' : 'hidden'} lg:block`}>
       <ul className="flex flex-col gap-2 my-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-end lg:gap-6">
-        <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <AlgoSelector /></li>
-        <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <span className="dark:text-gray-900">Generate Array</span><CountControl /></li>
-        <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <span className="dark:text-gray-900">Toggle Speed</span> <SpeedControl /></li>
+        <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900">  <DataStructureSelector /></li>
+        {dataStructure === dataStructures.ARRAY  && <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <AlgoSelector /></li>}
+        {dataStructure === dataStructures.ARRAY  &&  <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <span className="dark:text-gray-900">Generate Array</span><CountControl /></li>}
+<li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <span className="dark:text-gray-900">Toggle Speed</span>{
+  dataStructure === dataStructures.TREE ? <TreeSpeedControl /> : <SpeedControl />
+} </li>
+
         <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <StartControl /></li>
       </ul>
     </div>
