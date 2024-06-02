@@ -1,16 +1,24 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useCallback } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { setArrayCount, setRunning } from "@/redux/reducers/sortersSlice";
 import { generateArray } from "./generateArray";
 
 const  CountControl = () => {
     const dispatch = useDispatch();
     const arrayCount = useSelector((state) => state.sorting.arrayCount);
+    const [maxW, setMaxW] = useState(null)
     const updateCount = useCallback((e) => {
         dispatch(setRunning(false));
         dispatch(setArrayCount(e.target.value));
         generateArray();
     }, [dispatch]);
+    useEffect(() => {
+       const visu = document.getElementById("visualizer-container");
+       if(visu){
+        console.log(visu.clientWidth, "from visu")
+           setMaxW(visu.clientWidth)
+       }
+    });
     return (
         <div className="lg:w-full w-[10rem] border px-3 lg:py-3 py-1.5 text-black">
              <span className="pr-3">{arrayCount}</span>
@@ -51,7 +59,7 @@ type="range"  className="bg-transparent cursor-pointer appearance-none disabled:
   [&::-moz-range-track]:h-2
   [&::-moz-range-track]:bg-gray-100
   [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage"
- min={10} max={200} defaultValue={arrayCount}
+ min={10} max={maxW ? maxW : 200}    defaultValue={arrayCount}
   />
   </div>
     );
