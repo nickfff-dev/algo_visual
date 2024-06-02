@@ -9,18 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@material-tailwind/react": "^2.1.9",
     "@reduxjs/toolkit": "^2.2.5",
-    "apexcharts": "^3.49.1",
-    "chroma-js": "^2.4.2",
-    "d3": "^7.9.0",
     "next": "14.2.3",
     "react": "^18",
-    "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
     "react-redux": "^9.1.2",
-    "tree-model": "^1.0.7",
-    "uuid": "^9.0.1"
+    "tree-model": "^1.0.7"
   },
   "devDependencies": {
     "eslint": "^8",

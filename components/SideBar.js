@@ -6,6 +6,7 @@ import React, {useCallback} from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setMobileMenuOpen } from "@/redux/reducers/documentSlice";
+import Link from "next/link";
 const SideBar = () => {
   const dispatch = useDispatch();
   const mobileMenuOpen = useSelector((state) => state.page.mobileMenuOpen);
@@ -17,10 +18,10 @@ const SideBar = () => {
   className="block fixed  w-full max-w-screen-xl px-6 lg:py-3  mx-auto dark:bg-white bg-white border shadow-md  border-white/80 bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200">
 
   <div className="flex lg:flex-row flex-col items-center justify-between text-blue-gray-900">
-  <a href="/"
+  <Link href="/"
       className="mr-4 block cursor-pointer lg:py-1.5 dark:text-gray-900 font-sans text-base font-semibold leading-relaxed tracking-normal text-inherit antialiased">
       Algorithm Visualizer
-    </a>
+    </Link>
     <div className={`${mobileMenuOpen ? '' : 'hidden'} lg:block`}>
       <ul className="flex flex-col gap-2 my-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-end lg:gap-6">
         <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <AlgoSelector /></li>

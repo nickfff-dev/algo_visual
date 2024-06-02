@@ -1,46 +1,45 @@
 import { 
     incrementComparisons, 
-    incrementSwaps, 
-    setTree, 
+    incrementSwaps,  
     setCompNodes, 
     setSwapNodes, 
-    setSpecialNode
+    setSpecialNode,
+    setTreeData
   } from '@/redux/reducers/treesReducer';
   import { store } from "@/redux/store";
   import { MakeDelay } from './algoclass';
-  
+  import { getAllNodes, updateTreeData } from './helpers';
+
   // Function to perform an in-order traversal and collect nodes in an array
   
   export async function treeBubbleSort() {
-    const state = store.getState().trees;
-    const tree = state.tree;
-    if (!tree) return;
+    let treeData = JSON.parse(JSON.stringify(store.getState().trees.treeData));
+    if (!treeData) return;
   
-    const nodes = tree.all(); // Get all nodes in the tree
-    console.log(nodes);
+    const nodes = getAllNodes(treeData); // Get all nodes in the tree
     for (let i = 0; i < nodes.length - 1; i++) {
       for (let j = 0; j < nodes.length - i - 1; j++) {
         if (!store.getState().trees.running) return;
   
-        await MakeDelay(state.speed);
+        await MakeDelay(store.getState().trees.speed);
   
         const nodeA = nodes[j];
         const nodeB = nodes[j + 1];
   
-        store.dispatch(setCompNodes([nodeA.model.id, nodeB.model.id]));
+        store.dispatch(setCompNodes([nodeA.id, nodeB.id]));
         store.dispatch(incrementComparisons());
   
-        if (nodeA.model.id > nodeB.model.id) {
-          store.dispatch(setSwapNodes([nodeA.model.id, nodeB.model.id]));
+        if (nodeA.id > nodeB.id) {
+          store.dispatch(setSwapNodes([nodeA.id, nodeB.id]));
   
           // Swap the node IDs
-          [nodeA.model.id, nodeB.model.id] = [nodeB.model.id, nodeA.model.id];
+          [nodeA.id, nodeB.id] = [nodeB.id, nodeA.id];
           store.dispatch(incrementSwaps());
   
-          await MakeDelay(state.speed);
+          await MakeDelay(store.getState().trees.speed);
   
-          // Update the tree state
-          store.dispatch(setTree(tree.model));
+          let updatedTreeData = updateTreeData(treeData, nodes);
+          store.dispatch(setTreeData(updatedTreeData));
         }
         store.dispatch(setSwapNodes([]));
       }
@@ -51,51 +50,57 @@ import {
 
 
   export async function treeSelectionSort() {
-    const state = store.getState().trees;
-    const tree = state.tree;
-    if (!tree) return;
+    let treeData = JSON.parse(JSON.stringify(store.getState().trees.treeData));
+    if (!treeData) return;
   
-    const nodes = tree.all(); // Get all nodes in the tree
-    console.log(nodes);
+    const nodes = getAllNodes(treeData); // Get all nodes in the tree
+   
     for (let i = 0; i < nodes.length - 1; i++) {
       let minIndex = i;
-      store.dispatch(setSpecialNode(nodes[minIndex].model.id));
+      store.dispatch(setSpecialNode(nodes[minIndex].id));
   
       for (let j = i + 1; j < nodes.length; j++) {
         if (!store.getState().trees.running) return;
   
-        await MakeDelay(state.speed);
+        await MakeDelay(store.getState().trees.speed);
   
-        const nodeA = nodes[minIndex];
-        const nodeB = nodes[j];
+        let nodeA = nodes[minIndex];
+        let nodeB = nodes[j];
   
-        store.dispatch(setCompNodes([nodeA.model.id, nodeB.model.id]));
+        store.dispatch(setCompNodes([nodeA.id, nodeB.id]));
         store.dispatch(incrementComparisons());
   
-        if (nodeB.model.id < nodeA.model.id) {
+        if (nodeB.id < nodeA.id) {
           minIndex = j;
         }
   
-        store.dispatch(setCompNodes([nodes[minIndex].model.id, nodes[j].model.id]));
+        store.dispatch(setSpecialNode(nodes[minIndex].id));
       }
   
       if (minIndex !== i) {
-        const nodeA = nodes[i];
-        const nodeB = nodes[minIndex];
+
+        let nodeA = nodes[i];
+        let nodeB = nodes[minIndex];
   
-        store.dispatch(setSwapNodes([nodeA.model.id, nodeB.model.id]));
-  
+        store.dispatch(setSwapNodes([nodeA.id, nodeB.id]));
+        
         // Swap the node IDs
-        [nodeA.model.id, nodeB.model.id] = [nodeB.model.id, nodeA.model.id];
+        [nodeA.id, nodeB.id] = [nodeB.id, nodeA.id];
         store.dispatch(incrementSwaps());
   
-        await MakeDelay(state.speed);
+        await MakeDelay(store.getState().trees.speed);
   
         // Update the tree state
-        store.dispatch(setTree(tree.model));
+        let updatedTreeData = updateTreeData(treeData, nodes);
+        store.dispatch(setTreeData(updatedTreeData));
+        
       }
+      console.log("from algo",nodes, treeData);
       store.dispatch(setSwapNodes([]));
       store.dispatch(setSpecialNode(null));
     }
     store.dispatch(setCompNodes([]));
   };
+
+
+

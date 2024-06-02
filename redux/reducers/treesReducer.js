@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import TreeModel from 'tree-model';
+
 
 const initialState = {
-  tree: null,
+  treeData: null,
   comparisons: 0,
   swaps: 0,
   running: false,
   status: "unsorted",
-  speed: 100,
+  speed: 50,
   maxSpeed: 500,
   compNodes: [],
   swapNodes: [],
@@ -18,9 +18,8 @@ export const treeSortingSlice = createSlice({
   name: "trees",
   initialState,
   reducers: {
-    setTree: (state, action) => {
-      const treeModel = new TreeModel();
-      state.tree = treeModel.parse(action.payload);
+    setTreeData: (state, action) => {
+      state.treeData = action.payload;
       state.status = "unsorted";
     },
     incrementComparisons: (state) => {
@@ -67,7 +66,7 @@ export const treeSortingSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  setTree,
+  setTreeData,
   incrementComparisons,
   incrementSwaps,
   setRunning,

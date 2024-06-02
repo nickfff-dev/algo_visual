@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import BinaryTree from '@/components/BinaryTree';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRunning, setStatus } from '@/redux/reducers/treesReducer';
 import { treeBubbleSort } from '@/utils/treesAlgos';
+import { generateUnsortedTreePayload } from '@/utils/helpers';
+import { setTreeData } from '@/redux/reducers/treesReducer';
 
 
 export default function SortBinaries() {
@@ -11,6 +13,16 @@ export default function SortBinaries() {
   const handleStartSort =  () => {
     dispatch(setRunning(true));
   };
+
+  const generateTreeData = useCallback(() => {
+    const payload = generateUnsortedTreePayload(5, 2);
+    const clonedPayload = JSON.parse(JSON.stringify(payload));
+    dispatch(setTreeData(clonedPayload));
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    generateTreeData();
+  }, [ generateTreeData]);
 
 
   return (

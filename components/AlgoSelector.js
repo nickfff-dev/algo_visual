@@ -1,16 +1,25 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useCallback } from "react"
 import { setAlgorithmId } from "@/redux/reducers/documentSlice"
 import { generateArray } from "./generateArray";
-
-
+import { dataStructures } from "@/utils/constants";
+import { generateUnsortedTreePayload } from "@/utils/helpers";
+import { setTreeData } from "@/redux/reducers/treesReducer";
 export default function AlgoSelector() {
   const dispatch = useDispatch();
+  const dataStructure = useSelector((state) => state.page.dataStructure);
 
   const handleSelectAlgorithm = useCallback((e) => {
     dispatch(setAlgorithmId(e.target.value));
-    generateArray();
-  }, [dispatch]);
+    if (dataStructure === dataStructures.ARRAY) {
+      generateArray();
+    };
+    if (dataStructure === dataStructures.TREE) {
+      const payload = generateUnsortedTreePayload();
+      const clonedPayload = JSON.parse(JSON.stringify(payload));
+      dispatch(setTreeData(clonedPayload));
+    };
+  }, [dispatch, dataStructure]);
 
     return(
         <div className="relative  w-[12rem] lg:w-[200px]">

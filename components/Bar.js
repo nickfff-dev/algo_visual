@@ -18,7 +18,7 @@ export default function Bar(props){
           }`,
         }}
         id={props.id}
-        className={`border-t-2 rounded transition-all ease-linear `}
+        className={`border-t-2 rounded transition-all ease-linear`}
       ></div>
 
       </div>

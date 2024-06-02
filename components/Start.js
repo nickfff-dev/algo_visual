@@ -4,7 +4,7 @@ import { useCallback } from "react"
 import { useSelector } from "react-redux"
 import { setStatus, resetStats, setRunning } from "@/redux/reducers/sortersSlice"
 import SortingAlgorithms from "./SortingAlgorithms"
-import { generateArray } from "./generateArray"
+
 export default function StartControl() {
   const dispatch = useDispatch();
   const algorithmId = useSelector((state) => state.page.algorithmId);
@@ -37,11 +37,6 @@ export default function StartControl() {
     dispatch(setStatus("sorted"));
   }, [dispatch, algorithmId]);
 
-  // const handleStart = useCallback(() => {
-  //   if (isRunning) return;
-  //   dispatch(resetStats());
-  //   dispatch(setRunning(true));
-  // }, [dispatch]);
 
   const handleStop = useCallback(() => {
     if (!isRunning) return;
