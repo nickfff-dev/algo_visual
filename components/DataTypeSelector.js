@@ -1,12 +1,15 @@
 import { useDispatch } from "react-redux"
 import { useCallback } from "react"
 import { dataStructures } from "@/utils/constants";
-import { setDataStructure } from "@/redux/reducers/documentSlice";
+import { setDataStructure, setAlgorithmId } from "@/redux/reducers/documentSlice";
 
 export default function DataStructureSelector() {
   const dispatch = useDispatch();
   const handleSelectDataStructure= useCallback((e) => {
     dispatch(setDataStructure(e.target.value));
+    if (e.target.value === dataStructures.TREE) {
+      dispatch(setAlgorithmId('treeBubbleSort'));
+    } else {dispatch(setAlgorithmId('bubbleSort'))}
   }, [dispatch]);
 
     return(

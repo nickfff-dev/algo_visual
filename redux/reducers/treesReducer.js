@@ -7,6 +7,7 @@ const initialState = {
   swaps: 0,
   running: false,
   status: "unsorted",
+  treeShape: {levels:2, childrenNodes:2},
   speed: 50,
   maxSpeed: 500,
   compNodes: [],
@@ -36,10 +37,13 @@ export const treeSortingSlice = createSlice({
       if (action.payload === "unsorted") {
         state.comparisons = 0;
         state.swaps = 0;
-        state.compNodes = [];
-        state.swapNodes = [];
+        state.compNodes = [-1, -1];
+        state.swapNodes = [-1, -1];
         state.specialNode = null;
       }
+    },
+    setTreeShape: (state, action) => {
+      state.treeShape = action.payload;
     },
     setSpeed: (state, action) => {
       state.speed = action.payload;
@@ -72,6 +76,7 @@ export const {
   setRunning,
   setStatus,
   setSpeed,
+  setTreeShape,
   resetStats,
   setCompNodes,
   setSwapNodes,

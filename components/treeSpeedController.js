@@ -57,8 +57,7 @@ type="range" className="w-full bg-transparent cursor-pointer appearance-none dis
   [&::-moz-range-track]:h-2
   [&::-moz-range-track]:bg-gray-100
   [&::-moz-range-track]:rounded-full" id="basic-range-slider-usage2"
-    min={'0'} max={`${treeMaxSpeed}`} defaultValue={`${treeMaxSpeed - treeSortingSpeed
-      }`}
+    min={treeSortingSpeed} max={treeMaxSpeed} defaultValue={treeMaxSpeed - treeSortingSpeed}
   />
 
   </div>

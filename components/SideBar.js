@@ -10,6 +10,8 @@ import Link from "next/link";
 import { dataStructures } from "@/utils/constants";
 import DataStructureSelector from "./DataTypeSelector";
 import TreeSpeedControl from "./treeSpeedController";
+import StartTreeControl from "./StartTree";
+
 const SideBar = () => {
   const dispatch = useDispatch();
   const mobileMenuOpen = useSelector((state) => state.page.mobileMenuOpen);
@@ -30,13 +32,14 @@ const SideBar = () => {
     <div className={`${mobileMenuOpen ? '' : 'hidden'} lg:block`}>
       <ul className="flex flex-col gap-2 my-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-end lg:gap-6">
         <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900">  <DataStructureSelector /></li>
-        {dataStructure === dataStructures.ARRAY  && <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <AlgoSelector /></li>}
+        <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <AlgoSelector /></li>
         {dataStructure === dataStructures.ARRAY  &&  <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <span className="dark:text-gray-900">Generate Array</span><CountControl /></li>}
 <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <span className="dark:text-gray-900">Toggle Speed</span>{
   dataStructure === dataStructures.TREE ? <TreeSpeedControl /> : <SpeedControl />
 } </li>
 
-        <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> <StartControl /></li>
+
+        <li className="block p-1 font-sans text-xs antialiased font-medium leading-normal text-blue-gray-900"> {dataStructure === dataStructures.ARRAY ? <StartControl /> : <StartTreeControl />}</li>
       </ul>
     </div>
     <button

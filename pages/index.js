@@ -18,13 +18,15 @@ export default function Home() {
   const algorithmId = useSelector((state) => state.page.algorithmId);
   const dataStructure = useSelector((state) => state.page.dataStructure);
   const data = store.getState().sorting.array.slice();
+  const treeShape = useSelector((state) => state.trees.treeShape);
+
 
 
   const generateTreeData = useCallback(() => {
-    const payload = generateUnsortedTreePayload(5, 2);
+    const payload = generateUnsortedTreePayload(treeShape.levels, treeShape.childrenNodes);
     const clonedPayload = JSON.parse(JSON.stringify(payload));
     dispatch(setTreeData(clonedPayload));
-  }, [dispatch]);
+  }, [dispatch, treeShape]);
 
   useEffect(() => {
     dispatch(setRunning(false));
@@ -33,10 +35,16 @@ export default function Home() {
       data.length === 0 && generateArray();
     }
   });
+
+  useEffect(() => {
+    if (dataStructure === dataStructures.TREE) {
+      generateTreeData();
+    }
+  }, [dataStructure, generateTreeData]);
   return (   
     <div
     id='visualizer-container'
-      className={`${mono.className} w-[20%] mx-auto`}>
+      className={`${mono.className} ${dataStructure === dataStructures.TREE ? '': 'w-[20%]'} mx-auto`}>
       {dataStructure === dataStructures.ARRAY ? <RenderArray/> : <BinaryTree/>}
     </div>
   );

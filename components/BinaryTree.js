@@ -1,13 +1,10 @@
 import React, {useCallback} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTreeData, setRunning } from '@/redux/reducers/treesReducer';
-import { treeBubbleSort, treeSelectionSort } from '@/utils/treesAlgos';
 import TreeModel from 'tree-model';
+import TreeShapeInput from "./TreeShapeSlider";
 
 
 export default function BinaryTree() {
     let treeState = useSelector(state => state.trees);
-    const dispatch = useDispatch();
     const treeData = useSelector((state) => state.trees.treeData);
     const [root, setRoot] = React.useState(null);
 
@@ -33,14 +30,6 @@ export default function BinaryTree() {
 
  
 
-
-  React.useEffect(() => {
-    if (treeState.running) {
-      treeBubbleSort().then(()=> dispatch(setRunning(false)));
-    }
-    }, [treeState.running, dispatch]);
-   
-  // Helper function to recursively render nodes
   const renderNode = (node, x = 0, y = 0, dx = 250, dy = 80, level = 0) => {
     const childNodes = node.children || [];
     const isCompNode = treeState.compNodes.includes(node.model.id);
@@ -70,7 +59,7 @@ export default function BinaryTree() {
           const childY = y + dy;
           return (
             <React.Fragment key={child.model.id}>
-              <line x1={x} y1={y + 10} x2={childX} y2={childY - 10} stroke="black" />
+              <line x1={x} y1={y + 10} x2={childX} y2={childY - 10} stroke={isSwapNode ? "purple" : isCompNode ? "blue" : "green"} />
               {renderNode(child, childX, childY, dx / 1.4, dy, level + 1)}
             </React.Fragment>
           );
@@ -80,10 +69,11 @@ export default function BinaryTree() {
   };
   
     return (
-      <div className="flex w-full justify-center items-center h-screen bg-gray-100">
+      <div className="flex flex-col w-full justify-center items-center max-h-screen">
+        <TreeShapeInput />
         <svg
           viewBox="-450 0 900 400"
-          className="border border-gray-400 bg-white"
+          className="border border-gray-400 "
           width="900"
           height="600"
         >
