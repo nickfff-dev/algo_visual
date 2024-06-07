@@ -43,7 +43,7 @@ export default function Home() {
   }, [dataStructure, generateTreeData]);
   return (  <div className='overflow-hidden w-full mt-24 h-screen'>
              <div className="absolute -bottom-12 lg:-top-0 top-5 left-0 right-1/2 z-10 w-screen  text-white/10 md:bottom-8 ">
-    <svg aria-hidden="true" className="absolute inset-0 h-[80vh] w-screen border">
+    <svg aria-hidden="true" className="absolute inset-0 h-[85vh] w-screen border">
       <defs>
         <pattern id=":S2:" width="12" height="12" patternUnits="userSpaceOnUse" x="100%" y="100%" patternTransform="translate(112 64)">
           <path d="M0 128V.5H128" fill="none" stroke="currentColor"></path>
